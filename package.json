@@ -3,6 +3,7 @@
   "description": "JavaScript topology representation and manipulation",
   "version": "1.0.0",
   "author": "Björn Harrtell <bjorn@wololo.org>, bojko108 <bojko108@gmail.com>",
+  "main": "dist/topolis.js",
   "keywords": [
     "JSTS",
     "JavaScript",
@@ -40,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bjornharrtell/topolis.git"
+    "url": "git://github.com/bojko108/topolis.git"
   },
   "standard": {
     "globals": [
@@ -53,7 +54,7 @@
     "test": "nyc mocha --timeout 10s --compilers js:babel-register --require babelhook --recursive test",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test-watch": "mocha -w --timeout 10s --compilers js:babel-register --require babelhook --recursive test",
-    "build": "rollup -c rollup.config.js > dist/topolis.min.js",
+    "build": "rollup -c rollup.config.js > dist/topolis.js",
     "build-debug": "rollup -m inline -c rollup.config.js > dist/topolis.debug.js",
     "jsdoc": "jsdoc -c doc/config.json",
     "patch": "npm version patch --no-git-tag-version",

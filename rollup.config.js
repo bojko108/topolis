@@ -35,11 +35,11 @@ export default {
       ],
       plugins: ['external-helpers'],
       babelrc: false
-    }),
-    uglify({
-      output: {
-        comments: (node, token) => token.line < 4
-      }
     })
+    // uglify({
+    //   output: {
+    //     comments: (node, token) => token.line < 4
+    //   }
+    // })
   ]
 };
