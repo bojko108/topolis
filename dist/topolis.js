@@ -17712,11 +17712,12 @@ function addEdge(topo, start, end, coordinates, modFace) {
     minY: Math.min.apply(Math, toConsumableArray(ys)),
     maxX: Math.max.apply(Math, toConsumableArray(xs)),
     maxY: Math.max.apply(Math, toConsumableArray(ys))
+  };
 
-    // TODO: remove repeated points
-    // TODO: check that we haave at least two points left
+  // TODO: remove repeated points
+  // TODO: check that we haave at least two points left
 
-  };var span = {
+  var span = {
     cwFace: { id: -1 },
     ccwFace: { id: -1 },
     az: azimuth(coordinates[0], coordinates[1])
@@ -18079,7 +18080,8 @@ function remEdge(topo, edge, modFace) {
   newface = modFace ? floodface : newface;
 
   deletedFaces.forEach(function (f) {
-    deleteFace(topo, f);trigger(topo, 'removeface', f);
+    deleteFace(topo, f);
+    trigger(topo, 'removeface', f);
   });
 
   trigger(topo, 'removeedge', edge);
@@ -18163,18 +18165,21 @@ function modEdgeSplit(topo, edge, coordinate) {
   edges.filter(function (e) {
     return e.nextRight === edge && !e.nextRightDir && e.start === oldEnd && e !== newedge1;
   }).forEach(function (e) {
-    e.nextRight = newedge1;e.nextRightDir = false;
+    e.nextRight = newedge1;
+    e.nextRightDir = false;
   });
 
   edges.filter(function (e) {
     return e.nextLeft === edge && !e.nextLeftDir && e.end === oldEnd && e !== newedge1;
   }).forEach(function (e) {
-    e.nextLeft = newedge1;e.nextLeftDir = false;
+    e.nextLeft = newedge1;
+    e.nextLeftDir = false;
   });
 
   trigger(topo, 'addnode', node);
   trigger(topo, 'addedge', newedge1);
   trigger(topo, 'modedge', edge);
+  trigger(topo, 'splitedge', { origEdge: edge, newEdge: newedge1 });
 
   return node;
 }
@@ -18753,6 +18758,7 @@ function createTopology(name, srid, tolerance) {
       'removeface': [],
       'addedge': [],
       'modedge': [],
+      'splitedge': [],
       'removeedge': [],
       'addnode': [],
       'removenode': []

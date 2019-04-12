@@ -1,7 +1,7 @@
 {
   "name": "topolis",
   "description": "JavaScript topology representation and manipulation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Björn Harrtell <bjorn@wololo.org>, bojko108 <bojko108@gmail.com>",
   "main": "dist/topolis.js",
   "keywords": [
@@ -13,6 +13,17 @@
     "Geometry"
   ],
   "license": "MIT",
+  "scripts": {
+    "test": "nyc mocha --timeout 10s --compilers js:babel-register --require babelhook --recursive test",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "test-watch": "mocha -w --timeout 10s --compilers js:babel-register --require babelhook --recursive test",
+    "build": "rollup -c rollup.config.js > dist/topolis.js",
+    "build-debug": "rollup -m inline -c rollup.config.js > dist/topolis.debug.js",
+    "jsdoc": "jsdoc -c doc/config.json",
+    "patch": "npm version patch --no-git-tag-version",
+    "minor": "npm version minor --no-git-tag-version",
+    "major": "npm version major --no-git-tag-version"
+  },
   "devDependencies": {
     "babel-core": "6.25.0",
     "babel-plugin-external-helpers": "6.22.0",
@@ -49,16 +60,5 @@
       "it",
       "beforeEach"
     ]
-  },
-  "scripts": {
-    "test": "nyc mocha --timeout 10s --compilers js:babel-register --require babelhook --recursive test",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "test-watch": "mocha -w --timeout 10s --compilers js:babel-register --require babelhook --recursive test",
-    "build": "rollup -c rollup.config.js > dist/topolis.js",
-    "build-debug": "rollup -m inline -c rollup.config.js > dist/topolis.debug.js",
-    "jsdoc": "jsdoc -c doc/config.json",
-    "patch": "npm version patch --no-git-tag-version",
-    "minor": "npm version minor --no-git-tag-version",
-    "major": "npm version major --no-git-tag-version"
   }
 }

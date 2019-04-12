@@ -137,6 +137,7 @@ export function createTopology (name, srid, tolerance) {
       'removeface': [],
       'addedge': [],
       'modedge': [],
+      'splitedge': [],
       'removeedge': [],
       'addnode': [],
       'removenode': []
